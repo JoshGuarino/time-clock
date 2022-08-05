@@ -24,3 +24,16 @@ a {
     background: black;
   }
 }
+
+.row {
+  border: solid red 5px;
+  width: 100%;
+}
+
+.col {
+  border: solid blue 5px;
+}
+
+.container-fluid {
+  /*border: solid white 5px;*/
+}

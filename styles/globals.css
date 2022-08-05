@@ -15,25 +15,24 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+body {
+  color: white;
+  background: #393939;
 }
 
 .row {
-  border: solid red 5px;
+  /*border: solid red 5px;*/
   width: 100%;
 }
 
 .col {
-  border: solid blue 5px;
+  /*border: solid blue 5px;*/
 }
 
 .container-fluid {
   /*border: solid white 5px;*/
+}
+
+.card {
+  background: #262626;
 }

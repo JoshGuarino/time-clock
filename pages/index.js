@@ -3,6 +3,7 @@ import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
 import Account from '../components/Account'
 import styles from '../styles/Home.module.css'
+import Navbar from "../components/Navbar";
 
 export default function Home() {
     const [session, setSession] = useState(null)
@@ -16,7 +17,7 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="container-fluid">
+        <div className="container">
             <main className={styles.main}>
                 {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
             </main>

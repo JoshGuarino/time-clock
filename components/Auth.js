@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import Swal from 'sweetalert2'
 
 export default function Auth() {
     const [loading, setLoading] = useState(false)
@@ -10,9 +11,9 @@ export default function Auth() {
             setLoading(true)
             const { error } = await supabase.auth.signIn({ email })
             if (error) throw error
-            alert('Check your email for the login link!')
+            new Swal('Check your email for the login link!')
         } catch (error) {
-            alert(error.error_description || error.message)
+            new Swal(error.error_description || error.message)
         } finally {
             setLoading(false)
         }

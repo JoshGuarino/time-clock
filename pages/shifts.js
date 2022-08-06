@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
-import Account from '../components/Account'
 import styles from '../styles/Home.module.css'
 import Navbar from "../components/Navbar";
 
-export default function Home() {
+export default function Shifts() {
     const [session, setSession] = useState(null)
 
     useEffect(() => {
@@ -26,7 +25,7 @@ export default function Home() {
                 <>
                     <Navbar></Navbar>
                     <main className={styles.main}>
-                        <Account key={session.user.id} session={session} />
+                        shifts
                     </main>
                 </>
             }

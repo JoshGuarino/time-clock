@@ -28,6 +28,24 @@ body {
   background: #262626;
 }
 
-.clock {
+.brown {
   color: brown;
+}
+
+.green {
+  color: green;
+}
+
+.turq {
+  color: #0dcaf0
+}
+
+.table-cont {
+  border-radius: 10px;
+  background: #262626;
+}
+
+.table {
+  color: white;
+  background: #262626;
 }

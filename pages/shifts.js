@@ -3,6 +3,7 @@ import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
 import styles from '../styles/Home.module.css'
 import Navbar from "../components/Navbar";
+import ShiftsTable from '../components/ShiftsTable';
 
 export default function Shifts() {
     const [session, setSession] = useState(null)
@@ -25,7 +26,7 @@ export default function Shifts() {
                 <>
                     <Navbar></Navbar>
                     <main className={styles.main}>
-                        shifts
+                        <ShiftsTable session={session}/>
                     </main>
                 </>
             }

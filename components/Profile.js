@@ -83,19 +83,22 @@ export default function Profile({ session }) {
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                             <br/><br/>
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => updateProfile({ username })}
-                                disabled={loading}
-                            >
-                                {loading ? <div className="spinner-border" role="status"></div> : 'Update'}
-                            </button>
-                        </div>
-                        <br/>
-                        <div className="input-group mb-3">
-                            <button className="btn btn-secondary" onClick={() => supabase.auth.signOut()}>
-                                Sign Out
-                            </button>
+                            <div className="row">
+                                <div className="col">
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={() => updateProfile({ username })}
+                                        disabled={loading}
+                                    >
+                                        {loading ? <div className="spinner-border" role="status"></div> : 'Update'}
+                                    </button>
+                                </div>
+                                <div className="col text-end">
+                                    <button className="btn btn-secondary" onClick={() => supabase.auth.signOut()}>
+                                        Sign Out
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

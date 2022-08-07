@@ -1,9 +1,17 @@
-export function getTimeFromStart(dateTime) {
-    const now = (new Date()).getTime();
-    const start = (new Date(dateTime)).getTime();
-    
-    return now-start;
+export function getTimeDiff(start, end) {
+    let timeDiff = (new Date(end)).getTime() - (new Date(start)).getTime();
+    let seconds = Math.floor(timeDiff / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    seconds = seconds % 60;
+    minutes = minutes % 60;
+
+    return `${padTo2Digits(hours)} hours : ${padTo2Digits(minutes)} mins : ${padTo2Digits(seconds)} secs`; 
 }
+
+function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
 
 export function getDateTime(datime){
     let date = new Date(datime);
@@ -28,5 +36,5 @@ export function getDateTime(datime){
     min = (min < 10) ? "0" + min : min;
     sec = (sec < 10) ? "0" + sec : sec;
 
-    return `${hour}:${min}:${sec} ${session}, ${month}/${day}/${year}`;
+    return `${hour}:${min}:${sec} ${session} ${month}/${day}/${year}`;
 }

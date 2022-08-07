@@ -28,8 +28,8 @@ export default function Home() {
                     <Navbar></Navbar>
                     <main className={styles.main}>
                         <div className="row justify-content-evenly ">
-                            <Profile key={session.user.id} session={session} />
-                            <Clock key={session.user.id} session={session} />
+                            <Profile session={session} />
+                            <Clock session={session} />
                         </div>
                     </main>
                 </>

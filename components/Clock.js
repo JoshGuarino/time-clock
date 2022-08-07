@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import { getDateTime, getTimeFromStart } from '../utils/time';
+import { getDateTime, getTimeDiff } from '../utils/time';
 
 export default function Clock({ session }) {
     const [loading, setLoading] = useState(true);
@@ -12,20 +12,10 @@ export default function Clock({ session }) {
 
     const [takenBreak, setTakenBreak] = useState(false);
     const [takenLunch, setTakenLunch] = useState(false);
-    
-    const [shiftClock, setShiftClock] = useState('');
-    const [breakClock, setBreakClock] = useState('');
-    const [lunchClock, setLunchClock] = useState('');
 
     useEffect(() => {
-        getCurrentShift()
+        getCurrentShift();
     }, [session])
-
-    async function startClock(dateTime, elemID, isActive) {
-        document.getElementById(elemID).innerHTML = getTimeFromStart(dateTime)
-        if (!isActive) return
-        setTimeout(startClock, 1000, dateTime, isActive);
-    }
 
     async function getCurrentShift() {
         try {
@@ -38,13 +28,14 @@ export default function Clock({ session }) {
                 .eq('user_id', user.id)
                 .eq('shift_active', true)
                 .single();
-            console.log(data);
             setShift(data);
             if (data) {
                 setBreakActive(data.on_break);
                 setLunchActive(data.on_lunch);
+                if (data.break_ended_at) setTakenBreak(true);
+                if (data.lunch_ended_at) setTakenLunch(true);
             }
-            setShiftActive(!!data)
+            setShiftActive(!!data);
 
             return data;
         } catch (error) {
@@ -182,32 +173,45 @@ export default function Clock({ session }) {
     }
 
     return (
-        <div className="col-7">
+        <div className="col-8">
             <div className="card">
                 <div className="card-body">
                     <h1 className="card-title">Clock</h1>
                     <br/><br/>
                     <div className="row">
-                        <div className='col'>
-                            <h2 className="clock" id="shiftClock">{shiftClock}</h2>
+                        <div className='col text-center'>
+                            <h2 className="turq" id="shiftClock">Shift</h2>
+                            <br/><br/>
                             {   shiftActive ?
-                                <p className="card-text">{`Shift started at ${getDateTime(shift.created_at)}`}</p>
+                                <p className="card-text">Shift started <span className="turq">--</span> {getDateTime(shift.created_at)}</p>
                                 :
-                                'Currently off the clock.'
+                                'Currently off the clock'
                             }
                         </div>
-                        <div className='col shift'>
-                            <h2 className="clock" id="breakClock">{breakClock}</h2>
+                        <div className='col text-center'>
+                            <h2 className="turq" id="breakClock">Break</h2>
+                            <br/><br/>
                             {   breakActive ?
-                                <p className="card-text">{`Break started at ${getDateTime(shift.break_started_at)}`}</p>
+                                <p className="card-text">Break started <span className="turq">--</span> {getDateTime(shift.break_started_at)}</p>
+                                :
+                                <></>
+                            }
+                            { takenBreak ?
+                                <p>Break was <span className="turq">--</span> <span className="brown">{getTimeDiff(shift.break_started_at, shift.break_ended_at)}</span></p>
                                 :
                                 <></>
                             }
                         </div>
-                        <div className='col'>
-                            <h2 className="clock" id="lunchClock">{lunchClock}</h2>
+                        <div className='col text-center'>
+                            <h2 className="turq" id="lunchClock">Lunch</h2>
+                            <br/><br/>
                             {   lunchActive ?
-                                <p className="card-text">{`Lunch started at ${getDateTime(shift.lunch_started_at)}`}</p>
+                                <p className="card-text">Lunch started at <span className="turq">--</span> {getDateTime(shift.lunch_started_at)}</p>
+                                :
+                                <></>
+                            }
+                            { takenLunch ?
+                                <p>Lunch was <span className="turq">--</span> <span className="brown">{getTimeDiff(shift.lunch_started_at, shift.lunch_ended_at)}</span></p>
                                 :
                                 <></>
                             }
@@ -215,7 +219,7 @@ export default function Clock({ session }) {
                     </div>
                     <br/><br/>
                     <div className="row">
-                        <div className="col">
+                        <div className="col text-center">
                             {!shiftActive ?
                                 <button
                                     className="btn btn-outline-primary"
@@ -233,7 +237,7 @@ export default function Clock({ session }) {
                                 </button>
                             }
                         </div>
-                        <div className="col">
+                        <div className="col text-center">
                             { !breakActive ?
                                 <button
                                     className="btn btn-outline-primary"
@@ -250,14 +254,8 @@ export default function Clock({ session }) {
                                     {loading ? <div className="spinner-border" role="status"></div> : 'End Break'}
                                 </button>
                             }
-                            <br/><br/>
-                            { takenBreak ?
-                                <p>Already taken break.</p>
-                                :
-                                <></>
-                            }
                         </div>
-                        <div className="col">
+                        <div className="col text-center">
                             { !lunchActive ?
                                 <button
                                     className="btn btn-outline-primary"
@@ -273,12 +271,6 @@ export default function Clock({ session }) {
                                 >
                                     {loading ? <div className="spinner-border" role="status"></div> : 'End Lunch'}
                                 </button>
-                            }
-                            <br/><br/>
-                            { takenLunch ?
-                                <p>Already taken lunch.</p>
-                                :
-                                <></>
                             }
                         </div>
                     </div>

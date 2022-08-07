@@ -1,11 +1,8 @@
 export function getTimeFromStart(dateTime) {
     const now = (new Date()).getTime();
-    document.getElementById('clock').innerHTML = now-dateTime.getTime();
-}
-
-export function startClock(dateTime) {
-    getTimeFromStart(dateTime);
-    setInterval(getTimeFromStart, 1000, dateTime);
+    const start = (new Date(dateTime)).getTime();
+    
+    return now-start;
 }
 
 export function getDateTime(datime){

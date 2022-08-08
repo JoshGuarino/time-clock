@@ -26,7 +26,7 @@ export default function Auth() {
                 <h1 className="header">Time Clock</h1>
                 <br/>
                 <div className="col-12 form-widget">
-                    <p className="description">Sign in via magic link with your email below</p>
+                    <p className="description">Sign in or signup via magic link with your email below</p>
                     <br/>
                     <div className="input-group mb-3">
                             <input

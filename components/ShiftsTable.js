@@ -1,5 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
-import Shifts from "../pages/shifts";
+import { useEffect, useState } from "react";
 import { supabase } from '../utils/supabaseClient'
 import { getDateTime, getTimeDiff } from "../utils/time";
 
@@ -45,9 +44,9 @@ export default function ShiftsTable({ session }) {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Shift [start <span className="turq">--</span> end]</th>
-                        <th csope="col">Shift Length</th>
-                        <th csope="col">Break Length</th>
-                        <th csope="col">Lunch Length</th>
+                        <th scope="col">Shift Length</th>
+                        <th scope="col">Break Length</th>
+                        <th scope="col">Lunch Length</th>
                     </tr>
                     </thead>
                     <tbody>

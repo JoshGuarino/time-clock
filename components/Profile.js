@@ -86,7 +86,7 @@ export default function Profile({ session }) {
                             <div className="row">
                                 <div className="col">
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-outline-primary"
                                         onClick={() => updateProfile({ username })}
                                         disabled={loading}
                                     >
@@ -94,7 +94,7 @@ export default function Profile({ session }) {
                                     </button>
                                 </div>
                                 <div className="col text-end">
-                                    <button className="btn btn-secondary" onClick={() => supabase.auth.signOut()}>
+                                    <button className="btn btn-outline-secondary" onClick={() => supabase.auth.signOut()}>
                                         Sign Out
                                     </button>
                                 </div>

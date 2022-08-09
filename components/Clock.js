@@ -180,38 +180,38 @@ export default function Clock({ session }) {
                     <br/><br/>
                     <div className="row">
                         <div className='col text-center'>
-                            <h2 className="turq" id="shiftClock">Shift</h2>
+                            <h2 className="blue" id="shiftClock">Shift</h2>
                             <br/><br/>
                             {   shiftActive ?
-                                <p className="card-text">Shift started <span className="turq">--</span> {getDateTime(shift.created_at)}</p>
+                                <p className="card-text">Shift started <span className="blue">--</span> {getDateTime(shift.created_at)}</p>
                                 :
                                 'Currently off the clock'
                             }
                         </div>
                         <div className='col text-center'>
-                            <h2 className="turq" id="breakClock">Break</h2>
+                            <h2 className="blue" id="breakClock">Break</h2>
                             <br/><br/>
                             {   breakActive ?
-                                <p className="card-text">Break started <span className="turq">--</span> {getDateTime(shift.break_started_at)}</p>
+                                <p className="card-text">Break started <span className="blue">--</span> {getDateTime(shift.break_started_at)}</p>
                                 :
                                 <></>
                             }
                             { takenBreak ?
-                                <p>Break was <span className="turq">--</span> <span className="brown">{getTimeDiff(shift.break_started_at, shift.break_ended_at)}</span></p>
+                                <p>Break was <span className="blue">--</span> <span className="brown">{getTimeDiff(shift.break_started_at, shift.break_ended_at)}</span></p>
                                 :
                                 <></>
                             }
                         </div>
                         <div className='col text-center'>
-                            <h2 className="turq" id="lunchClock">Lunch</h2>
+                            <h2 className="blue" id="lunchClock">Lunch</h2>
                             <br/><br/>
                             {   lunchActive ?
-                                <p className="card-text">Lunch started at <span className="turq">--</span> {getDateTime(shift.lunch_started_at)}</p>
+                                <p className="card-text">Lunch started at <span className="blue">--</span> {getDateTime(shift.lunch_started_at)}</p>
                                 :
                                 <></>
                             }
                             { takenLunch ?
-                                <p>Lunch was <span className="turq">--</span> <span className="brown">{getTimeDiff(shift.lunch_started_at, shift.lunch_ended_at)}</span></p>
+                                <p>Lunch was <span className="blue">--</span> <span className="brown">{getTimeDiff(shift.lunch_started_at, shift.lunch_ended_at)}</span></p>
                                 :
                                 <></>
                             }

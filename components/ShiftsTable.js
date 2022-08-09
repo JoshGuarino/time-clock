@@ -69,7 +69,6 @@ export default function ShiftsTable({ session }) {
                             <th scope="col">Shift Length</th>
                             <th scope="col">Break Length</th>
                             <th scope="col">Lunch Length</th>
-                            <th scope="col">View</th>
                         </tr>
                         </thead>
                         {loading ?
@@ -79,7 +78,12 @@ export default function ShiftsTable({ session }) {
                             </>
                             :
                             <tbody>
-                            {
+                            {   !shifts ?
+                                <div>
+                                    <br/>
+                                    <h5 className="">No shifts found.</h5>
+                                </div>
+                                :
                                 shifts.map((shift, index) => {
                                     return (
                                         <tr key={index}>
@@ -110,15 +114,6 @@ export default function ShiftsTable({ session }) {
                                                     <span className="brown">{!shift.lunch_ended_at ? <span
                                                         className="blue">Not Taken</span> : getTimeDiff(shift.lunch_started_at, shift.lunch_ended_at)}</span>
                                                 }
-                                            </td>
-                                            <td>
-                                                <button
-                                                    className="btn btn-outline-info"
-                                                    onClick={() => {
-                                                    }}
-                                                >
-                                                    Detail View
-                                                </button>
                                             </td>
                                         </tr>
                                     )
